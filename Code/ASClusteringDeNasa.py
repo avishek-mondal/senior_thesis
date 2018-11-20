@@ -1,7 +1,7 @@
 '''
 ASClustering.py
 Author: Eric Ham
-Last Updated: 8/24/18
+
 Description: Clusters ASes by similarity so that a user can more easily choose an alias AS using balanced algorithm.
 Input: number of clusters or all to create sets of 5, 10, 20, 100 clusters.
 Output: similarity_clusters_[num].json

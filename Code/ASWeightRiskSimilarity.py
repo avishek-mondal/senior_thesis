@@ -1,10 +1,14 @@
 '''
 ASWeightEuclideanSimilarity.py
 Modified by Avishek, to use DeNASA parameters as input
-Original Description:
-Input: guard_selection_probs.json
-Output: ASSimilarityFileEuclidean.json
-Command Line: don't run from command line, run from generate_Euclidean_clusters.py
+Author: Eric Ham
+Works with Python 3
+Last Updated: 11/1/18
+Original Description: Takes CounterRaptorWeights.json/CounterRaptorWeightVanilla.json/CounterRaptorWeightNoBW.json as input and outputs a file
+which shows the similarity between each pair of ASes based on euclidian distance.
+Input: CounterRaptorWeights.json
+Output: ASSimilarityFile.json
+Command Line: Input (CounterRaptorWeights.json etc)
 Running: python3 ASWeightComparison.py
 
 '''
