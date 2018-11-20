@@ -44,14 +44,12 @@ def calculate_risk_similarity(guard_slection_filename = '../Data/guard_selection
         curr_guard_dict = guard_selection_probs[rep_AS]
 
         for member_AS, similarity_val in inner_similarity_dict.items():
-            using_alias_risk = 0
-            self_risk = 0
+            risk = 0
             for guard_fps, probability in curr_guard_dict.items():
                 if probability != 0 and usability_table[(member_AS, guard_fps)] == False:
                     print(rep_AS, member_AS, guard_fps, probability, risk)
-                    using_alias_risk = using_alias_risk + probability
-                    
-            inner_similarity_dict[member_AS] = 1 - (using_alias_risk - self_risk)
+                    risk = risk + probability
+            inner_similarity_dict[member_AS] = 1 - risk
             print('SIMILARITY IS ', inner_similarity_dict[member_AS])
 
     with open("../Data/ASSimilarityFile"+str(outputChar)+"1.json",'w') as file:
