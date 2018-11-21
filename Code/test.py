@@ -1,7 +1,9 @@
 import sys
 
-a = {'a':'dog', 'b': 'lol'}
-b={}
-b = dict.fromkeys(list(a.keys()),'')
+print("oging in")
+for i in range(5):
+    print(i)
+    if i>3:
+        print('breaking')
 
-print(b)
+print('got out', i)

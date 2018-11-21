@@ -45,12 +45,17 @@ def calculate_risk_similarity(guard_slection_filename = '../Data/guard_selection
 
         for member_AS, similarity_val in inner_similarity_dict.items():
             using_alias_risk = 0
-            self_risk = 0
+            self_risk = 1
             for guard_fps, probability in curr_guard_dict.items():
                 if probability != 0 and usability_table[(member_AS, guard_fps)] == False:
-                    print(rep_AS, member_AS, guard_fps, probability, risk)
+                    print(rep_AS, member_AS, guard_fps, probability, using_alias_risk)
                     using_alias_risk = using_alias_risk + probability
-                    
+
+                if usability_table[(member_AS, guard_fps)] == True:
+                    #if there is at least one suspect free AS, self-risk is 0
+                    self_risk = 0
+
+
             inner_similarity_dict[member_AS] = 1 - (using_alias_risk - self_risk)
             print('SIMILARITY IS ', inner_similarity_dict[member_AS])
 
