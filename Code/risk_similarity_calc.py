@@ -12,11 +12,57 @@ from  tempest.tor import relays
 from tempest.tor import denasa
 from tempest import pfi
 
-def calculate_risk_similarity(guard_slection_filename = '../Data/guard_selection_probs.json',outputChar='RiskMetric'):
+def calculate_risk_similarity(guard_selection_filename = '../Data/guard_selection_probs.json',\
+                            outputChar='RiskMetric',\
+                            nsf = "../Data/2016-10-01-00-00-00-network_state"):
     '''
     Load in all the data needed
     '''
-    with open(guard_slection_filename) as f:
+    with open(guard_selection_filename) as f:
+        guard_selection_probs = json.load(f)
+
+    usability_table = np.load('../Data/usability_table.npy').item()
+
+    '''
+    Initialize the similarity dictionary. Initially set all similarity values to 0.0
+    '''
+    output_similarity_dict = dict.fromkeys(list(guard_selection_probs.keys()),{})
+    for i,v in output_similarity_dict.items():
+        output_similarity_dict[i] = dict.fromkeys(list(guard_selection_probs.keys()),0.0)
+
+
+    '''
+    s(AS1, AS2): Sum over guards, for guard g_i with weight w_i (vanilla Tor weight aka consensus bandwidth),
+    if AS1 and AS2 agree on usability of g_i (i.e. if g_i is usable for both or unusable for both) then
+    add w_i into total sum, and otherwise add 0
+
+    '''
+
+    '''
+    First, get the vanilla Tor bandwidths
+    '''
+    network_state_vars = relays.fat_network_state(nsf)
+    guard_fps = []
+    for i, inner_dict in guard_selection_probs.items():
+        for guard_fp, v in inner_dict.items():
+            guard_fps.append(guard_fp)
+
+    guard_weights = relays.pathsim_get_position_weights(guard_fps,
+                                                        network_state_vars[0],
+                                                        'g',
+                                                        network_state_vars[4],
+                                                        network_state_vars[5])
+    '''
+    ??? 
+    '''
+
+
+
+def calculate_self_risk_similarity(guard_selection_filename = '../Data/guard_selection_probs.json',outputChar='RiskMetric'):
+    '''
+    Load in all the data needed
+    '''
+    with open(guard_selection_filename) as f:
         guard_selection_probs = json.load(f)
 
     usability_table = np.load('../Data/usability_table.npy').item()
