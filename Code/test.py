@@ -1,9 +1,13 @@
 import sys
+import json
 
-print("oging in")
-for i in range(5):
-    print(i)
-    if i>3:
-        print('breaking')
 
-print('got out', i)
+a = ['h', 'da', 'asdfae', 'adfa']
+b = []
+if a:
+    print([i for i in a])
+
+if b:
+    print([i for i in a])
+else:
+    print('nothin')

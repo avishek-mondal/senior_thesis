@@ -1,7 +1,6 @@
 '''
 ASWeightEuclideanSimilarity.py
 Modified by Avishek, to use DeNASA parameters as input
-Author: Eric Ham
 Works with Python 3
 Last Updated: 11/1/18
 Original Description: Takes CounterRaptorWeights.json/CounterRaptorWeightVanilla.json/CounterRaptorWeightNoBW.json as input and outputs a file

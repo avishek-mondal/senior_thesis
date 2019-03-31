@@ -74,4 +74,4 @@ a guard that will have a suspect AS against similarity \n \
 of member AS to cluster representative')
 
 plt.show()
-f.savefig("../Plots/security_vs_similarity.png", bbox_inches='tight')
+# f.savefig("../Plots/security_vs_similarity.png", bbox_inches='tight')
